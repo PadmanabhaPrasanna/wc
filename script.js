@@ -68,8 +68,8 @@ document.getElementById("addTubing").addEventListener("click", function() {
             <option value="" disabled selected>Tubing</option>
             
         </select></td>
-        <td><input type="number" class="form-control" id="startLength${table.rows.length}" required value="${document.getElementById("endLength"+(table.rows.length-1)).value}"></td>
-        <td><input type="number" class="form-control" id="endLength${table.rows.length}" required></td>
+        <td><input type="number" class="form-control" id="startLength${table.rows.length}" required value="${document.getElementById("endLength"+(table.rows.length-1)).value}" disabled></td>
+        <td><input type="number" class="form-control" id="endLength${table.rows.length}" required disabled></td>
         <td><button type="button" class="btn btn-danger remove-row" id="removeTubing${table.rows.length}">Remove</button></td>
     `;
     table.appendChild(newRow);
@@ -127,8 +127,8 @@ document.getElementById("addCasing").addEventListener("click", function() {
             <option value="" disabled selected>Casing Type</option>
             
         </select></td>
-        <td><input type="number" class="form-control" id="CasingStartLength${ctable.rows.length}" required value="${document.getElementById("CasingEndLength"+(ctable.rows.length-1)).value}"></td>
-        <td><input type="number" class="form-control" id="CasingEndLength${ctable.rows.length}" required></td>
+        <td><input type="number" class="form-control" id="CasingStartLength${ctable.rows.length}" required value="${document.getElementById("CasingEndLength"+(ctable.rows.length-1)).value}" disabled></td>
+        <td><input type="number" class="form-control" id="CasingEndLength${ctable.rows.length}" required disabled></td>
         <td><button type="button" class="btn btn-danger remove-row" id="removeCasing${ctable.rows.length}">Remove</button></td>
     `;
     ctable.appendChild(cnewRow);
@@ -187,14 +187,21 @@ document.getElementById('form').addEventListener('input', function(){
     for (let i = 0; i < tubtable.rows.length; i++)
     {
         //tubing data
-        var tstartval = document.getElementById(`startLength${i}`).value;
-        var tendval = document.getElementById(`endLength${i}`).value;
-
         let tselect = document.getElementById(`tubingType${i}`);
         let tselectedoption = tselect.options[tselect.selectedIndex];
         var tinnerDia = parseFloat(tselectedoption.getAttribute("data-id"));
         var touterDia = parseFloat(tselectedoption.getAttribute("data-od"));
 
+        //Enabling after option choose
+        if (!isNaN(tinnerDia)){
+        document.getElementById(`startLength${i}`).removeAttribute("disabled");
+        document.getElementById(`endLength${i}`).removeAttribute("disabled");
+        }
+
+        var tstartval = document.getElementById(`startLength${i}`).value;
+        var tendval = document.getElementById(`endLength${i}`).value;
+
+        
         if((tendval-tstartval)>=0)
         {
         tubinnervol = tubinnervol + tinnerDia*tinnerDia*0.0005066*(tendval-tstartval);
@@ -205,13 +212,21 @@ document.getElementById('form').addEventListener('input', function(){
     for (let j=0;j < castable.rows.length; j++)
     {
         //casing data
-        var cstartval = document.getElementById(`CasingStartLength${j}`).value;
-        var cendval = document.getElementById(`CasingEndLength${j}`).value;
-
         let cselect = document.getElementById(`casingType${j}`);
         let cselectedoption = cselect.options[cselect.selectedIndex];
         var cinnerDia = parseFloat(cselectedoption.getAttribute("data-id"));
         var couterDia = parseFloat(cselectedoption.getAttribute("data-od"));
+
+        //Enabling after option choose
+        if (!isNaN(cinnerDia)){
+        document.getElementById(`CasingStartLength${j}`).removeAttribute("disabled");
+        document.getElementById(`CasingEndLength${j}`).removeAttribute("disabled");
+        }
+
+        var cstartval = document.getElementById(`CasingStartLength${j}`).value;
+        var cendval = document.getElementById(`CasingEndLength${j}`).value;
+
+        
         
 
         if((cendval-cstartval)>=0){
