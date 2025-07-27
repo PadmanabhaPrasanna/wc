@@ -4,6 +4,7 @@
     background-color: rgb(231, 148, 76);
     border: solid;
     padding: 10px;
+    
 
 }
 #imagecreator
@@ -18,6 +19,7 @@
     background-color: rgb(226, 237, 126);
     border: solid;
     border-radius: 0.1;
+    
 
 }
 #loadingmessagebox
@@ -30,6 +32,7 @@
     height: 10vh;
     align-content: center;
     
+    
 }
 
 #loadingmessageblocker
@@ -39,4 +42,6 @@
     height: 100%;
     z-index: 9999;
     backdrop-filter: blur(5px);
+    
+    
 }
