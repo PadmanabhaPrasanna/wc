@@ -28,7 +28,7 @@
   function loadingmessage()
   {
     if(tubingloaded && casingloaded){
-    document.getElementById("loadingmessage").style.display = "none";
+    document.getElementById("loadingmessageblocker").style.display = "none";
     }
 
   }
