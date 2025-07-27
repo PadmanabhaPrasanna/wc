@@ -1,0 +1,22 @@
+
+#form 
+{
+    background-color: rgb(231, 148, 76);
+    border: solid;
+    padding: 10px;
+
+}
+#imagecreator
+{
+    background-color: rgb(130, 221, 233);
+    border: solid;
+    border-radius: 0.1;
+
+}
+#display
+{
+    background-color: rgb(226, 237, 126);
+    border: solid;
+    border-radius: 0.1;
+
+}
