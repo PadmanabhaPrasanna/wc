@@ -20,12 +20,27 @@
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
+
+//Loading message 
+  let tubingloaded = false;
+  let casingloaded = false;
+
+  function loadingmessage()
+  {
+    if(tubingloaded && casingloaded){
+    document.getElementById("loadingmessage").style.display = "none";
+    }
+
+  }
+
 //Data obtainer and make first tubing row
   onValue(ref(db, 'tubing/'), (snapshot) => {
       const data = snapshot.val();
 
       //const datamod = JSON.stringify(data);  //tester
       //document.getElementById("display").innerHTML = datamod;  //tester
+
+      tubingloaded = true;
 
       for (const key in data)
       {
@@ -82,6 +97,9 @@ document.getElementById("addTubing").addEventListener("click", function() {
 //Data obtainer and make first casing row
   onValue(ref(db, 'casing/'), (snapshot) => {
       const data = snapshot.val();
+
+      casingloaded = true;
+      loadingmessage();
 
 
       for (const key in data)
