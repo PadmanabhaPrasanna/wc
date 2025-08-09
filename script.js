@@ -249,9 +249,7 @@ document.getElementById('form').addEventListener('input', function(){
     //well volume with string calculator
     if ((fullwellvol - tubmetaldisp)>=0)
       { wellvol = fullwellvol - tubmetaldisp;}
-    
 
-          
      document.getElementById("display").innerHTML = "Tubing volume: " + tubinnervol.toFixed(3) + " kl <br>" + "Tubing metal displacement: "+ tubmetaldisp.toFixed(3) + " kl <br>" + "Well volume (with string): " + wellvol.toFixed(3) + "kl";
      
 
