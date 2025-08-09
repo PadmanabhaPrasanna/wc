@@ -238,6 +238,15 @@ document.getElementById('form').addEventListener('input', function(){
 
     let wellvol = 0;
 
+    //tubinnervol Nan to zero maker
+    if(isNaN(tubinnervol))
+    { tubinnervol = 0;}
+
+    //tubmetaldisp NaN to zero maker
+    if(isNaN(tubmetaldisp))
+    { tubmetaldisp = 0;}
+
+    //well volume with string calculator
     if ((fullwellvol - tubmetaldisp)>=0)
       { wellvol = fullwellvol - tubmetaldisp;}
     
