@@ -159,7 +159,7 @@ document.getElementById("addCasing").addEventListener("click", function() {
 
 /* Removing tubing row */
 
-//Reindexing function for tubing
+//Reindexing function for tubing after remove hit
 function reindexTbg()
 {
   const rows = document.getElementById("tbody").rows;
@@ -173,9 +173,13 @@ function reindexTbg()
 
 document.getElementById("tbody").addEventListener("click", function(e){
     
-        if(e.target.innerHTML === "Remove"){ e.target.parentNode.parentNode.remove();}
+        if(e.target.innerHTML === "Remove")
+          { 
+            e.target.parentNode.parentNode.remove();
+            reindexTbg();
+          }
 
-        reindexTbg();
+        
     
 });
 
@@ -183,7 +187,7 @@ document.getElementById("tbody").addEventListener("click", function(e){
 
 /* Removing casing row */
 
-//Reindexing function for casing
+//Reindexing function for casing after remove hit
 function reindexCsg() 
 {
     const rows = document.getElementById("casingTbody").rows;
@@ -286,10 +290,6 @@ function hitCalculate()
 
 
 }
-
-
-
-
 /* executing calculating function*/
 
 document.getElementById('form').addEventListener('input', hitCalculate);
@@ -297,3 +297,88 @@ document.getElementById('form').addEventListener('input', hitCalculate);
 document.getElementById('form').addEventListener('click', hitCalculate);
 
 
+
+
+//Reset alert box
+
+document.getElementById('resetAlert').style.display = "none" ;
+document.getElementById('resetAlertcsg').style.display = "none" ;
+
+document.getElementById("resetTubing").addEventListener('click',function()
+{
+  document.getElementById('resetAlert').style.display = "block";
+});
+
+document.getElementById("resetCasing").addEventListener('click',function()
+{
+  document.getElementById('resetAlertcsg').style.display = "block";
+});
+
+
+//Tubing rows resetting functions 
+document.getElementById("resetAlertbox").addEventListener('click',resettbgfunc);
+
+function resettbgfunc(event)
+{
+  if(event.target.innerHTML === "Yes")
+  {
+    
+    document.getElementById('resetAlert').style.display = "none" ;
+    const rows = document.getElementById("tbody").rows;
+
+    for(let i=rows.length-1; i>0; i--)
+    {
+      rows[i].remove();
+      console.log(`success ${i}`);
+    }
+    //resets first row to 0
+
+    document.getElementById("tubingType0").selectedIndex = 0;
+    document.getElementById("startLength0").value = 0;
+    document.getElementById("endLength0").value = "";
+
+    document.getElementById("startLength0").setAttribute("disabled", "true");
+    document.getElementById("endLength0").setAttribute("disabled", "true");
+
+  }
+  else
+  {
+    document.getElementById('resetAlert').style.display = "none" ;
+
+  }
+}
+
+
+//Casing rows resetting functions
+document.getElementById("resetAlertboxcsg").addEventListener('click',resetcsgfunc);
+
+
+function resetcsgfunc(event)
+{
+  if(event.target.innerHTML === "Yes")
+  {
+    
+    document.getElementById('resetAlertcsg').style.display = "none" ;
+    const rows = document.getElementById("casingTbody").rows;
+
+    for(let i=rows.length-1; i>0; i--)
+    {
+      rows[i].remove();
+      console.log(`success ${i}`);
+    }
+    //resets first row to 0
+
+    document.getElementById("casingType0").selectedIndex = 0;
+    document.getElementById("CasingStartLength0").value = 0;
+    document.getElementById("CasingEndLength0").value = "";
+
+    document.getElementById("CasingStartLength0").setAttribute("disabled", "true");
+    document.getElementById("CasingEndLength0").setAttribute("disabled", "true");
+
+  }
+  else
+  {
+    document.getElementById('resetAlertcsg').style.display = "none" ;
+
+  }
+}
