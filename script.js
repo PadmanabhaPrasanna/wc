@@ -158,25 +158,55 @@ document.getElementById("addCasing").addEventListener("click", function() {
 
 
 /* Removing tubing row */
+
+//Reindexing function for tubing
+function reindexTbg()
+{
+  const rows = document.getElementById("tbody").rows;
+  for (let i = 0; i < rows.length; i++) {
+        rows[i].querySelector("select").id = `tubingType${i}`;
+        rows[i].querySelectorAll("input")[0].id = `startLength${i}`;
+        rows[i].querySelectorAll("input")[1].id = `endLength${i}`;
+        rows[i].querySelector("button").id = `removeTubing${i}`;
+    }
+}
+
 document.getElementById("tbody").addEventListener("click", function(e){
     
         if(e.target.innerHTML === "Remove"){ e.target.parentNode.parentNode.remove();}
+
+        reindexTbg();
     
 });
 
+
+
 /* Removing casing row */
+
+//Reindexing function for casing
+function reindexCsg() 
+{
+    const rows = document.getElementById("casingTbody").rows;
+    for (let i = 0; i < rows.length; i++) {
+        rows[i].querySelector("select").id = `casingType${i}`;
+        rows[i].querySelectorAll("input")[0].id = `CasingStartLength${i}`;
+        rows[i].querySelectorAll("input")[1].id = `CasingEndLength${i}`;
+        rows[i].querySelector("button").id = `removeCasing${i}`;
+    }
+}
+
 document.getElementById("casingTbody").addEventListener("click", function(e){
     
         if(e.target.innerHTML === "Remove"){e.target.parentNode.parentNode.remove();}
+
+        reindexCsg();
     
 });
 
 
-
-
-/* Calculating function*/
-
-document.getElementById('form').addEventListener('input', function(){
+//calculating function
+function hitCalculate()
+{
     let tubinnervol = 0;
     let tubmetaldisp = 0;
     let fullwellvol = 0;
@@ -209,7 +239,7 @@ document.getElementById('form').addEventListener('input', function(){
         };
     }
 
-    for (let j=0;j < castable.rows.length; j++)
+    for (let j=0; j < castable.rows.length; j++)
     {
         //casing data
         let cselect = document.getElementById(`casingType${j}`);
@@ -255,4 +285,15 @@ document.getElementById('form').addEventListener('input', function(){
 
 
 
-});
+}
+
+
+
+
+/* executing calculating function*/
+
+document.getElementById('form').addEventListener('input', hitCalculate);
+
+document.getElementById('form').addEventListener('click', hitCalculate);
+
+
